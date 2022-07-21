@@ -19,7 +19,6 @@
 #  fk_rails_...  (article_id => articles.id)
 #
 class Comment < ApplicationRecord
-  include Visible
+  include Validatable
   belongs_to :article
-  
 end
