@@ -1,6 +1,8 @@
 class ArticlesController < ApplicationController
   def index
     @articles = Article.all
+    flash[:notice] = "Welcome to homepage!"
+    flash[:alert] = "Please don't forge articles"
   end
 
   def show
