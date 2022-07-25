@@ -1,11 +1,9 @@
 <% unless comment.archived? %>
   <p>
-    <%= form.label :commenter %> <br>
-    <%= form.text_field :commenter %>
+    <%= comment.commenter %>
   </p>
 
   <p>
-    <%= form.label :body %> <br>
-    <%= form.text_field :body %>
+    <%= comment.body %>
   </p>
 <% end %>

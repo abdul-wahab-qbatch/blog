@@ -1,12 +1,15 @@
 class ArticlesController < ApplicationController
+  #before_action :checkc
+  #skip_before_action :checkc, only: [ :show, :new ]
+  http_basic_authenticate_with name: "admin", password: "admin"
   def index
     @articles = Article.all
-    flash[:notice] = "Welcome to homepage!"
-    flash[:alert] = "Please don't forge articles"
+    flash.keep[:notice] = "Welcome to homepage!"
+    flash.keep[:alert] = "Please don't forge articles"
   end
 
   def show
-    @article = Article.find(params[:id])
+  @article = Article.find(params[:id])
   end
 
   def new
@@ -46,4 +49,8 @@ class ArticlesController < ApplicationController
   def article_params
     params.require(:article).permit(:title, :body, :status)
   end 
+
+  # def checkc
+  #   byebug
+  # end
 end
