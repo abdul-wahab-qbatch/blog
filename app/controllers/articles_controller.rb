@@ -2,7 +2,8 @@ class ArticlesController < ApplicationController
   #before_action :checkc
   #skip_before_action :checkc, only: [ :show, :new ]
   #before_action :digest_authenticate
-  rescue_from ActionController::RedirectBackError, with: :redirect_to_default
+  #rescue_from ActionController::RedirectBackError, with: :redirect_to_default
+  rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
   USERS = { 'wahab'=> 'admin' }
   def index
     @articles = Article.all
@@ -12,6 +13,10 @@ class ArticlesController < ApplicationController
 
   def default_url_options
     { locale: I18n.locale, host: 'abc.com' }
+  end
+
+  def not_show
+    @article = Article.find(params[:id])
   end
 
   def show
@@ -74,5 +79,12 @@ class ArticlesController < ApplicationController
 
   def redirect_to_default
     redirect_to root_path
+  end
+
+  def record_not_found
+    puts 'record not found.'
+    @articles = Article.all
+    flash.now[:alert] = "Article not found"
+    render :index
   end
 end

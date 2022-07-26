@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   resources :articles do 
     resources :comments, shallow: true
+    get 'not_show', on: :member
   end
 
   resources :ads, as: 'periodical_ads'
