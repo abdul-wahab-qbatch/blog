@@ -2,6 +2,7 @@ class ArticlesController < ApplicationController
   #before_action :checkc
   #skip_before_action :checkc, only: [ :show, :new ]
   #before_action :digest_authenticate
+  rescue_from ActionController::RedirectBackError, with: :redirect_to_default
   USERS = { 'wahab'=> 'admin' }
   def index
     @articles = Article.all
@@ -15,7 +16,12 @@ class ArticlesController < ApplicationController
 
   def show
     @article = Article.find(params[:id])
-    render plain: "OK", layout: true
+    #render json: @article
+    #render js: "alert('Hello');"
+    #render body: "raw"
+    #render layout: 'articles'
+    redirect_back(fallback_location: root_path)
+
   end
 
   def new
@@ -64,5 +70,9 @@ class ArticlesController < ApplicationController
     authenticate_or_request_with_http_digest do |username|
       USERS[username]
     end
+  end
+
+  def redirect_to_default
+    redirect_to root_path
   end
 end
