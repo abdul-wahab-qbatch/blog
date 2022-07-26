@@ -1,15 +1,21 @@
 class ArticlesController < ApplicationController
   #before_action :checkc
   #skip_before_action :checkc, only: [ :show, :new ]
-  http_basic_authenticate_with name: "admin", password: "admin"
+  #before_action :digest_authenticate
+  USERS = { 'wahab'=> 'admin' }
   def index
     @articles = Article.all
     flash.keep[:notice] = "Welcome to homepage!"
     flash.keep[:alert] = "Please don't forge articles"
   end
 
+  def default_url_options
+    { locale: I18n.locale, host: 'abc.com' }
+  end
+
   def show
-  @article = Article.find(params[:id])
+    @article = Article.find(params[:id])
+    render plain: "OK", layout: true
   end
 
   def new
@@ -53,4 +59,10 @@ class ArticlesController < ApplicationController
   # def checkc
   #   byebug
   # end
+
+  def digest_authenticate 
+    authenticate_or_request_with_http_digest do |username|
+      USERS[username]
+    end
+  end
 end

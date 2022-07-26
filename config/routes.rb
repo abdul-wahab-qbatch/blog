@@ -9,6 +9,17 @@ Rails.application.routes.draw do
     resources :comments, shallow: true
   end
 
+  resources :ads, as: 'periodical_ads'
+  resources :videos, param: :identifier
+
+
+
+  resources :audi do
+    resources :bmw, shallow: true
+  end
+
+  resources :photos, controller: 'images', as: :vdd
+
   # scope :admin do
   #   resources :articles 
   # end
