@@ -11,9 +11,9 @@ class ArticlesController < ApplicationController
     flash.keep[:alert] = "Please don't forge articles"
   end
 
-  def default_url_options
-    { locale: I18n.locale, host: 'abc.com' }
-  end
+  # def default_url_options
+  #   { locale: I18n.locale, host: 'abc.com' }
+  # end
 
   def not_show
     @article = Article.find(params[:id])
@@ -21,12 +21,7 @@ class ArticlesController < ApplicationController
 
   def show
     @article = Article.find(params[:id])
-    #render json: @article
-    #render js: "alert('Hello');"
-    #render body: "raw"
-    #render layout: 'articles'
     redirect_back(fallback_location: root_path)
-
   end
 
   def new
@@ -44,7 +39,6 @@ class ArticlesController < ApplicationController
 
   def edit 
     @article = Article.find(params[:id])
-    head :bad_request
   end
 
   def update

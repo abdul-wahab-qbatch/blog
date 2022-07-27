@@ -1,2 +1,40 @@
 <h1>Edit Article</h1>
-<%= render 'form', article: @article %>
+<%# <%= render 'form', article: @article %> 
+<%= form_with model: @article do |f| %>
+  <div>
+   <%= f.button "Delete", formmethod: :delete, data: { confirm: "Are you sure?" } %>
+  </div>
+
+  <div>
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+    <% @article.errors.full_messages_for(:title).each do |message| %>
+      <div>
+        <p><%= message %><p>
+      </div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= f.label :body %><br>
+    <%= f.text_field :body %>
+    <% @article.errors.full_messages_for(:body).each do |message| %>
+      <div>
+        <p><%= message %><p>
+      </div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= f.radio_button :status, 'public' %>
+    <%= f.label :public, 'Public'%>
+    <%= f.radio_button :status, 'private' %>
+    <%= f.label :private, 'Private'%>
+    <%= f.radio_button :status, 'Archived' %>
+    <%= f.label :archived, 'Archived'%>
+  </div>
+
+  <div>
+    <%= f.submit %>
+  </div>
+<% end %>
