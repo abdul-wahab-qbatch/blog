@@ -44,6 +44,7 @@ class ArticlesController < ApplicationController
 
   def edit 
     @article = Article.find(params[:id])
+    head :bad_request
   end
 
   def update

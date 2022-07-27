@@ -20,6 +20,32 @@
   </div>
 
   <div>
+    <%= f.radio_button :status, 'public' %>
+    <%= f.label :public, 'Public'%>
+    <%= f.radio_button :status, 'private' %>
+    <%= f.label :private, 'Private'%>
+    <%= f.radio_button :status, 'Archived' %>
+    <%= f.label :archived, 'Archived'%>
+  </div>
+
+<%= f.text_area :message, size: "70x5" %>
+<%= f.hidden_field :parent_id, value: "foo" %>
+<%= f.password_field :password %>
+<%= f.number_field :price, in: 1.0..20.0, step: 0.5 %>
+<%= f.range_field :discount, in: 1..100 %>
+<%= f.date_field :born_on %>
+<%= f.time_field :started_at %>
+<%= f.datetime_local_field :graduation_day %>
+<%= f.month_field :birthday_month %>
+<%= f.week_field :birthday_week %>
+<%= f.search_field :name %>
+<%= f.email_field :address %>
+<%= f.telephone_field :phone %>
+<%= f.url_field :homepage %>
+<%= f.color_field :favorite_color %>
+
+
+  <div>
     <%= f.submit %>
   </div>
 <% end %>

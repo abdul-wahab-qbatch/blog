@@ -2,19 +2,19 @@
   <%= content_tag(:div, msg, class: name )%>
 <% end %>
 
+<%# <%= image_tag 'apple-touch-icon.png'%>
 <h1>Articles#index</h1>
 <p>Find me in app/views/articles/index.html.erb</p>
 <h1>Hello Articles!</h1>
 
 Our blog has <%= Article.public_count %> articles and counting!
 <ul>
-  <% @articles.each do |article| %>
-    <% unless article.archived? %>
-      <li>
-        <%= link_to article.title, article %>
-      </li>
-    <% end %>
-  <% end %>
+  <%= render partial: @articles, spacer_template: 'spacee' %>
 </ul>
 
+<%= image_tag 'ss', height: '55px'%>
 <%= link_to "New Article", new_article_path %>
+
+<%= render partial: 'spacee', layout: 'greeting_layout' %>
+
+
