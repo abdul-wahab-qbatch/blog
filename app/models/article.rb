@@ -11,7 +11,8 @@
 #
 class Article < ApplicationRecord
   include Validatable
-  has_many :comments
+  has_many :comments, inverse_of: :article
+  accepts_nested_attributes_for :comments, allow_destroy: true
   validates :title, presence: true
   validates :body, presence: true, length: { minimum: 10 }  
 end

@@ -24,10 +24,23 @@
     <%= f.select :status, [["PUBLIC", 'public'], ["PRIVATE", 'private'], ["ARCHIVED",'archived']], selected: 'private' %>
   </div>
 
-  <%= f.time_zone_select :time_zone %>
-  <%= f.date_select :dlll %>
-  <%= select_year 1999, prefix: "party" %>
-  <%#= f.collection_radio_buttons :article_id, Article.order(:title), :id, :title %>
+  <div>
+    <h3>Comments: </h3>
+    <ul>
+      <%= f.fields_for :comments |comment_f| do %>
+        <li>
+          <%= comment_f.label :commenter %>
+          <%= comment_f.text_field :commenter %>
+
+          <%= comment_f.label :body %>
+          <%= comment_f.text_field :body %>
+
+          <%= comment_f.check_box :_destroy %>
+        <li>
+      <% end %>
+    </ul>
+  </div>
+
   <div>
     <%= f.submit %>
   </div>

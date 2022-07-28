@@ -26,6 +26,7 @@ class ArticlesController < ApplicationController
 
   def new
     @article = Article.new
+    2.times { @article.comments.build }
   end
 
   def create
@@ -60,7 +61,8 @@ class ArticlesController < ApplicationController
   private
   def article_params
     byebug
-    params.require(:article).permit(:title, :body, :status)
+    params.require(:article).permit(:title, :body, :status, comments_attributes: 
+      [:id, :commenter, :body, :_destroy])
   end 
 
 
