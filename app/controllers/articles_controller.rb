@@ -59,12 +59,10 @@ class ArticlesController < ApplicationController
 
   private
   def article_params
+    byebug
     params.require(:article).permit(:title, :body, :status)
   end 
 
-  # def checkc
-  #   byebug
-  # end
 
   def digest_authenticate 
     authenticate_or_request_with_http_digest do |username|

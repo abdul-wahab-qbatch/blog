@@ -19,15 +19,15 @@
     <% end %>
   </div>
 
+
   <div>
-    <%= f.radio_button :status, 'public' %>
-    <%= f.label :public, 'Public'%>
-    <%= f.radio_button :status, 'private' %>
-    <%= f.label :private, 'Private'%>
-    <%= f.radio_button :status, 'Archived' %>
-    <%= f.label :archived, 'Archived'%>
+    <%= f.select :status, [["PUBLIC", 'public'], ["PRIVATE", 'private'], ["ARCHIVED",'archived']], selected: 'private' %>
   </div>
 
+  <%= f.time_zone_select :time_zone %>
+  <%= f.date_select :dlll %>
+  <%= select_year 1999, prefix: "party" %>
+  <%#= f.collection_radio_buttons :article_id, Article.order(:title), :id, :title %>
   <div>
     <%= f.submit %>
   </div>
